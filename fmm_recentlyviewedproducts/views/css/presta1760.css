@@ -1,0 +1,28 @@
+#recentlyviewedproducts .product-miniature .recentlyviewedproduct-thumbnail-container {
+	width: 100% !important
+}
+
+#recentlyviewedproducts {
+	background: white !important
+}
+
+#recentlyviewedproducts .product-miniature .recentlyviewedproduct-product-description {
+	width: 100% !important;
+	bottom: 10px !important
+}
+
+#recentlyviewedproducts .product-miniature .recentlyviewedproduct-highlighted-informations {
+	width: 100% !important
+}
+
+#recentlyviewedproducts .product-miniature .recentlyviewedproduct-product-thumbnail {
+	height: 210px !important
+}
+
+#recentlyviewedproducts .product-miniature .recentlyviewedproduct-product-thumbnail img {
+	margin: 0px 0px !important
+}
+
+#recentlyviewedproducts .product-miniature #short-des {
+	width: 87% !important
+}

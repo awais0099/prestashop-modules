@@ -59,6 +59,7 @@ class Fmm_RecentlyViewedProducts extends Module implements WidgetInterface
             // && $this->registerHook('displayFooterProduct')
             && $this->registerHook('displayLeftColumn')
             && $this->registerHook('displayCustomerAccount')
+            && $this->registerHook('displayHeader')
             && $this->registerHook('actionModuleRegisterHookAfter')
             && $this->registerHook('displayProductAdditionalInfo')
             && $this->registerHook('actionObjectProductDeleteAfter')
@@ -215,6 +216,7 @@ class Fmm_RecentlyViewedProducts extends Module implements WidgetInterface
         if (!empty($products)) {
             return array(
                 'products' => $products,
+                'version' => _PS_VERSION_,
                 'viewedproductsListLink' => $this->context->link->getModuleLink('fmm_recentlyviewedproducts', 'RVProductsCont')
             );
         }
@@ -312,6 +314,16 @@ class Fmm_RecentlyViewedProducts extends Module implements WidgetInterface
         dump($params);exit;
         if ($params['hook_name'] == 'displayMyAccountBlock') {
             $this->_clearCache('*');
+        }
+    }
+
+    public function hookdisplayHeader($params)
+    {
+        if (_PS_VERSION_ == '1.7.6.0' or _PS_VERSION_ == '1.7.6') {
+            $this->context->controller->registerStylesheet(
+                'modules-fmm_recentlyviewedproducts',
+                'modules/' . $this->name . '/views/css/presta1760.css'
+            );
         }
     }
 
