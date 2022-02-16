@@ -15,6 +15,10 @@
 	width: 100% !important
 }
 
+#recentlyviewedproducts .product-miniature .thumbnail-container:hover .highlighted-informations.no-variants {
+    bottom: 5.2rem !important
+}
+
 #recentlyviewedproducts .product-miniature .recentlyviewedproduct-product-thumbnail {
 	height: 210px !important
 }
@@ -23,6 +27,14 @@
 	margin: 0px 0px !important
 }
 
+#recentlyviewedproducts .recentlyviewedproducts-anchor-tag {
+	margin-top: 2.8rem
+}
+
 #recentlyviewedproducts .product-miniature #short-des {
 	width: 87% !important
+}
+
+#my-recentlyviewedproducts-list #products .product article {
+	margin-left: 1.5rem
 }

@@ -1,0 +1,18 @@
+#recentlyviewedproducts {
+	padding: 1.563rem 1.25rem;
+	margin-bottom: 1.563rem;
+	background: #fff;
+}
+
+#recentlyviewedproducts .thumbnail-container .highlighted-informations.no-variants {
+	width: 100% !important
+}
+
+#recentlyviewedproducts .thumbnail-container:hover .highlighted-informations.no-variants {
+    top: calc(250px - 5.5rem);
+    bottom: 2.2rem
+}
+
+#my-recentlyviewedproducts-list #products .product article {
+	margin-left: 1.5rem
+}

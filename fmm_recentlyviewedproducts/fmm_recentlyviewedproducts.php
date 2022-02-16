@@ -324,7 +324,14 @@ class Fmm_RecentlyViewedProducts extends Module implements WidgetInterface
                 'modules-fmm_recentlyviewedproducts',
                 'modules/' . $this->name . '/views/css/presta1760.css'
             );
+        } else {
+            $this->context->controller->registerStylesheet(
+                'modules-fmm_recentlyviewedproducts',
+                'modules/' . $this->name . '/views/css/fmm_recentlyviewedproducts.css'
+            );
         }
+
+
     }
 
     public function hookDisplayCustomerAccount()

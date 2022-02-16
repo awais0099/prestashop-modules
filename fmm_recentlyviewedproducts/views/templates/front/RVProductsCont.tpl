@@ -12,8 +12,9 @@
 {extends file=$layout}
 
 {block name='content'}
-  <section class="featured-products clearfix page-content card card-block">
-    <h2>{l s='Viewed products' d='Modules.Viewedproduct.Shop'}</h2>
+  <section class="featured-products clearfix page-content card card-block" id="my-recentlyviewedproducts-list">
+    <h4>{l s='Viewed Products' d='Modules.Viewedproduct.Shop'}</h4>
+
     <div class="products js-product-list" id="products" style="margin-top: 20px;">
       
         {foreach from=$products item="product"}
