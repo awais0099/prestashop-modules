@@ -34,6 +34,8 @@ class Fmm_RecentlyViewedProducts extends Module implements WidgetInterface
         $this->tab = 'front_office_features';
         $this->need_instance = 0;
 
+        $this->controllers = array('RVProductsCont');
+
         $this->ps_versions_compliancy = array(
             'min' => '1.7.0.0',
             'max' => _PS_VERSION_,
@@ -60,6 +62,7 @@ class Fmm_RecentlyViewedProducts extends Module implements WidgetInterface
             && $this->registerHook('displayLeftColumn')
             && $this->registerHook('displayCustomerAccount')
             && $this->registerHook('displayHeader')
+            && $this->registerHook('moduleRoutes')
             && $this->registerHook('actionModuleRegisterHookAfter')
             && $this->registerHook('displayProductAdditionalInfo')
             && $this->registerHook('actionObjectProductDeleteAfter')
@@ -343,6 +346,23 @@ class Fmm_RecentlyViewedProducts extends Module implements WidgetInterface
             ]);
             return $this->display(__FILE__, 'linkInMyAccountBlock.tpl');
         }
+    }
+
+    public function hookModuleRoutes($params)
+    {
+          return array(
+            'module-' . $this->name . '-RVProductsCont' => array(
+                'controller' => 'RVProductsCont',
+                'rule' => "recently-viewed-products",
+                'keywords' => array(
+                    'rewrite' => array('regexp' => '[_a-zA-Z0-9\pL\pS-]*', 'param' => 'rewrite'),
+                ),
+                'params' => array(
+                    'fc' => 'module',
+                    'module' => $this->name,
+                ),
+            ),
+        );
     }
 
 }

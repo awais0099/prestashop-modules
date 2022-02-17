@@ -21,12 +21,14 @@ class fmm_recentlyviewedproductsRVProductsContModuleFrontController extends Modu
     private $templateFile = 'module:fmm_recentlyviewedproducts/views/templates/front/RVProductsCont.tpl';
 
     private $currentProductId;
+    
+    // public $php_self = "Sampah";
 
     public function initContent()
     {
         parent::initContent();
         
-        $products;
+        $products; 
 
         $existingProductsQuery = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS('
             SELECT p.id_product
@@ -100,6 +102,7 @@ class fmm_recentlyviewedproductsRVProductsContModuleFrontController extends Modu
         if (!empty($products)) {
             $this->context->smarty->assign([
                 'products' => $products,
+                // 'path' => 'sampah'
             ]);
         }
 

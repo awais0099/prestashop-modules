@@ -1,0 +1,8 @@
+
+**friendly routes/url**
+moduleRoutes in prestashop
+https://www.prestashop.com/forums/topic/342413-module-routes/
+
+https://stackoverflow.com/questions/59752150/prestashop-hook-moduleroutes
+
+=========================================================================
