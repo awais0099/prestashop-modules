@@ -22,16 +22,14 @@ class fmm_recentlyviewedproductsRVProductsContModuleFrontController extends Modu
 
     private $currentProductId;
     
-    // public $php_self = "Sampah";
-
     public function initContent()
     {
         parent::initContent();
         
-        $products; 
+        $products = null;
 
-        $existingProductsQuery = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS('
-            SELECT p.id_product
+        $existingProductsQuery = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS(
+            'SELECT p.id_product
             FROM ' . _DB_PREFIX_ . 'product p
             WHERE p.active = 1'
         );
@@ -40,10 +38,8 @@ class fmm_recentlyviewedproductsRVProductsContModuleFrontController extends Modu
             return $entry['id_product'];
         }, $existingProductsQuery);
         
-        // dump($existingProductsQuery);exit;
      
         if (!isset($this->context->cookie->viewed) || empty($this->context->cookie->viewed)) {
-            // dump($configuration);exit;
             return;
         }
 
@@ -56,9 +52,14 @@ class fmm_recentlyviewedproductsRVProductsContModuleFrontController extends Modu
         });
 
 
-        // $getViewedProductIds = array_slice($viewedProductsIds, 0, (int) (Configuration::get('FMM_AH_PRODUCTS_VIEWED_NBR')));
+        // $getViewedProductIds = array_slice(
+        //     $viewedProductsIds,
+        //     0,
+        //     (int) (Configuration::get('FMM_AH_PRODUCTS_VIEWED_NBR'))
+        // );
 
-        // dump($getViewedProductIds);exit;
+        // dump($getViewedProductIds);
+        //exit;
 
         // $products = $this->getViewedProducts();
         
@@ -84,29 +85,25 @@ class fmm_recentlyviewedproductsRVProductsContModuleFrontController extends Modu
 
             if (is_array($productIds)) {
                 foreach ($productIds as $productId) {
-                        $products_for_template[] = $presenter->present(
-                            $presentationSettings,
-                            $assembler->assembleProduct(array('id_product' => $productId)),
-                            $this->context->language
-                        );
-                    
+                    $products_for_template[] = $presenter->present(
+                        $presentationSettings,
+                        $assembler->assembleProduct(array('id_product' => $productId)),
+                        $this->context->language
+                    );
                 }
             }
-
             $products = $products_for_template;
         }
 
-        // dump($products);exit;
+        // dump($products);
+        //exit;
 
 
         if (!empty($products)) {
             $this->context->smarty->assign([
                 'products' => $products,
-                // 'path' => 'sampah'
             ]);
         }
-
-        
 
         $this->setTemplate(
             'module:fmm_recentlyviewedproducts/views/templates/front/RVProductsCont.tpl'

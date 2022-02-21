@@ -21,7 +21,7 @@ if (!defined('_PS_VERSION_')) {
     exit;
 }
 
-class Fmm_RecentlyViewedProducts extends Module implements WidgetInterface
+class Fmm_Recentlyviewedproducts extends Module implements WidgetInterface
 {
     private $templateFile;
     private $currentProductId;
@@ -30,7 +30,7 @@ class Fmm_RecentlyViewedProducts extends Module implements WidgetInterface
     {
         $this->name = 'fmm_recentlyviewedproducts';
         $this->author = 'PrestaShop';
-        $this->version = '1.2.2';
+        $this->version = '1.0.0';
         $this->tab = 'front_office_features';
         $this->need_instance = 0;
 
@@ -44,9 +44,13 @@ class Fmm_RecentlyViewedProducts extends Module implements WidgetInterface
         $this->bootstrap = true;
         parent::__construct();
 
-        $this->displayName = $this->trans('Recentyl viewed products', array(), 'Modules.Recentlyviewedproducts.Admin');
+        $this->displayName = $this->trans(
+            'Recentyl viewed products',
+            array(),
+            'Modules.Recentlyviewedproducts.Admin'
+        );
         $this->description = $this->trans(
-            'Recentyl viewed products.',
+            'Recentyl viewed products with dedicated page and left column block.',
             array(),
             'Modules.Recentlyviewedproducts.Admin'
         );
@@ -92,23 +96,33 @@ class Fmm_RecentlyViewedProducts extends Module implements WidgetInterface
 
         if (Tools::isSubmit('submitBlockViewed')) {
             if (!($productNbr = Tools::getValue('FMM_AH_PRODUCTS_VIEWED_NBR')) || empty($productNbr)) {
-                $output .= $this->displayError($this->trans(
-                    'You must fill in the \'Products displayed\' field.',
-                    array(),
-                    'Modules.Recentlyviewedproducts.Admin'
-                ));
+                $output .= $this->displayError(
+                    $this->trans(
+                        'You must fill in the \'Products displayed\' field.',
+                        array(),
+                        'Modules.Recentlyviewedproducts.Admin'
+                    )
+                );
             } elseif (0 === (int) ($productNbr)) {
-                $output .= $this->displayError($this->trans('Invalid number.', array(), 'Modules.Recentlyviewedproducts.Admin'));
+                $output .= $this->displayError(
+                    $this->trans(
+                        'Invalid number.',
+                        array(),
+                        'Modules.Recentlyviewedproducts.Admin'
+                    )
+                );
             } else {
                 Configuration::updateValue('FMM_AH_PRODUCTS_VIEWED_NBR', (int) $productNbr);
 
                 $this->_clearCache($this->templateFile);
 
-                $output .= $this->displayConfirmation($this->trans(
-                    'The settings have been updated.',
-                    array(),
-                    'Admin.Notifications.Success'
-                ));
+                $output .= $this->displayConfirmation(
+                    $this->trans(
+                        'The settings have been updated.',
+                        array(),
+                        'Admin.Notifications.Success'
+                    )
+                );
             }
         }
 
@@ -169,7 +183,10 @@ class Fmm_RecentlyViewedProducts extends Module implements WidgetInterface
     public function getConfigFieldsValues()
     {
         return array(
-            'FMM_AH_PRODUCTS_VIEWED_NBR' => Tools::getValue('FMM_AH_PRODUCTS_VIEWED_NBR', Configuration::get('FMM_AH_PRODUCTS_VIEWED_NBR')),
+            'FMM_AH_PRODUCTS_VIEWED_NBR' => Tools::getValue(
+                'FMM_AH_PRODUCTS_VIEWED_NBR',
+                Configuration::get('FMM_AH_PRODUCTS_VIEWED_NBR')
+            ),
         );
     }
 
@@ -182,7 +199,9 @@ class Fmm_RecentlyViewedProducts extends Module implements WidgetInterface
 
     public function renderWidget($hookName = null, array $configuration = array())
     {
-        // dump($configuration);exit;
+        // dump($configuration);
+        //exit;
+        
         if (isset($configuration['product']['id_product'])) {
             $this->currentProductId = $configuration['product']['id_product'];
         }
@@ -217,13 +236,19 @@ class Fmm_RecentlyViewedProducts extends Module implements WidgetInterface
         $products = $this->getViewedProducts();
 
         if (!empty($products)) {
+            if (count($products) > 2) {
+                $products = array_slice($products, 0, 2);
+            }
+
             return array(
                 'products' => $products,
                 'version' => _PS_VERSION_,
-                'viewedproductsListLink' => $this->context->link->getModuleLink('fmm_recentlyviewedproducts', 'RVProductsCont')
+                'viewedproductsListLink' => $this->context->link->getModuleLink(
+                    'fmm_recentlyviewedproducts',
+                    'RVProductsCont'
+                )
             );
         }
-
         return false;
     }
 
@@ -301,10 +326,8 @@ class Fmm_RecentlyViewedProducts extends Module implements WidgetInterface
      */
     private function getExistingProductsIds()
     {
-        $existingProductsQuery = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS('
-            SELECT p.id_product
-            FROM ' . _DB_PREFIX_ . 'product p
-            WHERE p.active = 1'
+        $existingProductsQuery = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS(
+            'SELECT p.id_product FROM ' . _DB_PREFIX_ . 'product p WHERE p.active = 1'
         );
 
         return array_map(function ($entry) {
@@ -314,7 +337,8 @@ class Fmm_RecentlyViewedProducts extends Module implements WidgetInterface
 
     public function hookActionModuleRegisterHookAfter($params)
     {
-        dump($params);exit;
+        //dump($params);
+        //exit;
         if ($params['hook_name'] == 'displayMyAccountBlock') {
             $this->_clearCache('*');
         }
@@ -322,7 +346,7 @@ class Fmm_RecentlyViewedProducts extends Module implements WidgetInterface
 
     public function hookdisplayHeader($params)
     {
-        if (_PS_VERSION_ == '1.7.6.0' or _PS_VERSION_ == '1.7.6') {
+        if (_PS_VERSION_ == '1.7.6.0') {
             $this->context->controller->registerStylesheet(
                 'modules-fmm_recentlyviewedproducts',
                 'modules/' . $this->name . '/views/css/presta1760.css'
@@ -333,8 +357,6 @@ class Fmm_RecentlyViewedProducts extends Module implements WidgetInterface
                 'modules/' . $this->name . '/views/css/fmm_recentlyviewedproducts.css'
             );
         }
-
-
     }
 
     public function hookDisplayCustomerAccount()
@@ -342,7 +364,10 @@ class Fmm_RecentlyViewedProducts extends Module implements WidgetInterface
         $products = $this->getViewedProducts();
         if (!empty($products)) {
             $this->context->smarty->assign([
-                'viewedproductsListLink' => $this->context->link->getModuleLink('fmm_recentlyviewedproducts', 'RVProductsCont')
+                'viewedproductsListLink' => $this->context->link->getModuleLink(
+                    'fmm_recentlyviewedproducts',
+                    'RVProductsCont'
+                )
             ]);
             return $this->display(__FILE__, 'linkInMyAccountBlock.tpl');
         }
@@ -350,7 +375,7 @@ class Fmm_RecentlyViewedProducts extends Module implements WidgetInterface
 
     public function hookModuleRoutes($params)
     {
-          return array(
+        return array(
             'module-' . $this->name . '-RVProductsCont' => array(
                 'controller' => 'RVProductsCont',
                 'rule' => "recently-viewed-products",
@@ -364,5 +389,4 @@ class Fmm_RecentlyViewedProducts extends Module implements WidgetInterface
             ),
         );
     }
-
 }

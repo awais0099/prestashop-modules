@@ -4,15 +4,23 @@
 	background: #fff;
 }
 
-#recentlyviewedproducts .thumbnail-container .highlighted-informations.no-variants {
+#recentlyviewedproducts .thumbnail-container .highlighted-informations .no-variants {
 	width: 100% !important
 }
 
-#recentlyviewedproducts .thumbnail-container:hover .highlighted-informations.no-variants {
-    top: calc(250px - 5.5rem);
+#recentlyviewedproducts .thumbnail-container .thumbnail-top .highlighted-informations .no-variants {
+	width: 100% !important
+}
+
+#recentlyviewedproducts .thumbnail-container:hover .highlighted-informations .no-variants {
+    top: calc(250px - 5.2rem);
     bottom: 2.2rem
 }
 
 #my-recentlyviewedproducts-list #products .product article {
 	margin-left: 1.5rem
+}
+
+#my-recentlyviewedproducts-list #products {
+	margin-top: 20px
 }

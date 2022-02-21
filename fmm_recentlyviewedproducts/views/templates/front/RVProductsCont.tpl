@@ -15,7 +15,7 @@
   <section class="featured-products clearfix page-content card card-block" id="my-recentlyviewedproducts-list">
     <h4>{l s='Viewed Products' d='Modules.Viewedproduct.Shop'}</h4>
 
-    <div class="products js-product-list" id="products" style="margin-top: 20px;">
+    <div class="products js-product-list" id="products">
       
         {foreach from=$products item="product"}
           {include file="catalog/_partials/miniatures/product.tpl" product=$product}

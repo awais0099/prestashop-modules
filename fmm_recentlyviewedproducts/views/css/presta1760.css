@@ -1,4 +1,52 @@
-#recentlyviewedproducts .product-miniature .recentlyviewedproduct-thumbnail-container {
+#recentlyviewedproducts {
+	box-shadow: 2px 2px 8px 0 rgba(0,0,0,.2);
+	margin-bottom: 1.563rem;
+	background: #fff;
+	padding: 1.563rem 1.25rem
+}
+
+#recentlyviewedproducts .products article {
+	margin: 0px 0px;
+	width: 100%
+}
+
+#recentlyviewedproducts .product-miniature .thumbnail-container {
+	width: 100%
+}
+
+#recentlyviewedproducts .thumbnail-container .highlighted-informations {
+	width: 100% !important
+}
+
+#recentlyviewedproducts .thumbnail-container .highlighted-informations.no-variants {
+	width: 100% !important
+}
+
+#recentlyviewedproducts .thumbnail-container:hover .highlighted-informations.no-variants {
+    /* top: calc(250px - 4.2rem); */
+	bottom: 4.85rem
+}
+
+#recentlyviewedproducts .product-miniature .product-thumbnail img {
+	margin: 0px 0px;
+	height: 100%
+}
+
+#recentlyviewedproducts .product-miniature .product-description {
+	width: 100%;
+	bottom: 10px
+}
+
+#recentlyviewedproducts .product-miniature #short-des {
+	width: 87%
+}
+
+#my-recentlyviewedproducts-list #products {
+	margin-top: 20px
+}
+
+
+/* #recentlyviewedproducts .product-miniature .thumbnail-container {
 	width: 100% !important
 }
 
@@ -6,12 +54,12 @@
 	background: white !important
 }
 
-#recentlyviewedproducts .product-miniature .recentlyviewedproduct-product-description {
+#recentlyviewedproducts .product-miniature .product-description {
 	width: 100% !important;
 	bottom: 10px !important
 }
 
-#recentlyviewedproducts .product-miniature .recentlyviewedproduct-highlighted-informations {
+#recentlyviewedproducts .product-miniature .highlighted-informations {
 	width: 100% !important
 }
 
@@ -19,11 +67,11 @@
     bottom: 5.2rem !important
 }
 
-#recentlyviewedproducts .product-miniature .recentlyviewedproduct-product-thumbnail {
+#recentlyviewedproducts .product-miniature .product-thumbnail {
 	height: 210px !important
 }
 
-#recentlyviewedproducts .product-miniature .recentlyviewedproduct-product-thumbnail img {
+#recentlyviewedproducts .product-miniature .product-thumbnail img {
 	margin: 0px 0px !important
 }
 
@@ -38,3 +86,4 @@
 #my-recentlyviewedproducts-list #products .product article {
 	margin-left: 1.5rem
 }
+ */
